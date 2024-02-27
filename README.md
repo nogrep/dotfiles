@@ -60,10 +60,10 @@ https://github.com/junegunn/fzf
 
 5. Cheatsheet for bash
 
-Ctrl + A : Move to the start of the line.
-Ctrl + E : Move to the end of the line.
-Alt  + B : Move back one word.
-Alt  + F : Move forward a word.
+Ctrl + A : Move to the start of the line. 
+Ctrl + E : Move to the end of the line. 
+Alt  + B : Move back one word. 
+Alt  + F : Move forward a word. 
 
 Ctrl + U : Delete from the cursor to the start of the line.
 Ctrl + K : Delete from the cursor to the end of the line.
