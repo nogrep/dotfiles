@@ -39,3 +39,4 @@ Tab & /::@ ;@
 Tab & Rshift::¥ ;⧹
 
 Tab::Tab
+;https://qiita.com/snytng/items/ec72d5dd892d3a520d6e
