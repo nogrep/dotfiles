@@ -101,6 +101,12 @@ call plug#end()
 
 " REMAP
 let mapleader =" "
-nnoremap <silent> <Leader>e :Ex<CR>
+nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>g :Rg<CR>
+nnoremap <silent> <Leader>j :bn<CR>
+nnoremap <silent> <Leader>k :bp<CR>
+nnoremap <silent> <Leader>b :buffers<CR>:buffer 
+nnoremap <silent> <Leader>b :buffers<CR>:buffer<Space>
 
 
