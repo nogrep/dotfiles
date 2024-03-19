@@ -1,0 +1,55 @@
+#!/bin/bash
+# Check if a file pattern was provided as an argument
+if [ -z "$1" ]; then
+    # Prompt the user for a file pattern
+    read -p "Enter the file pattern to search for: " pattern
+else
+    pattern="$1"
+fi
+
+# Check if fd exists, otherwise use find
+if command -v fd &> /dev/null; then
+  search_command="fd"
+else
+  # search_command="find . -type f -name "
+  search_command="fzf"
+fi
+# Use find to search for files matching the pattern
+files=$($search_command "$pattern" 2>/dev/null)
+IFS=$'\n' # Set the Internal Field Separator to newline
+
+# Check if any files were found
+if [ -z "$files" ]; then
+    echo "No files found matching the pattern: $pattern"
+    exit 1
+fi
+# Display the list of files found
+echo "Files found matching the pattern '$pattern':"
+counter=1
+for file in $files; do
+    echo "$counter. $file"
+    ((counter++))
+done
+
+# Loop to open files and prompt for file numbers or 'q' to quit
+while true; do
+    # Prompt the user to choose a file to open
+    read -p "Enter the file number to open (or 'q' to quit): " choice
+
+    if [ "$choice" == "q" ]; then
+        echo "Exiting..."
+        exit 0
+    fi
+
+    # Get the chosen file from the list of files
+    selected_file=$(echo "$files" | sed -n "${choice}p")
+
+    # Check if the chosen file exists
+    if [ -n "$selected_file" ]; then
+        # Open the chosen file using the 'start' command (Windows)
+        start "" "$selected_file"
+    else
+        echo "Invalid choice."
+    fi
+done
+
