@@ -92,21 +92,19 @@ call plug#begin()
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+Plug 'Donaldttt/fuzzyy'
 call plug#end()
 
-" REMAP
-let mapleader =" "
+let g:enable_fuzzyy_keymaps = 0
+let g:files_respect_gitignore = 0
+
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>g :Rg<CR>
+nnoremap <silent> <Leader><Leader> <Plug>(easymotion-bd-w)
+nnoremap <silent> <Leader>sf :FuzzyFiles<CR>
+nnoremap <silent> <Leader>sb :FuzzyBuffers<CR>
+nnoremap <silent> <Leader>sg :FuzzyGrep<CR>
+nnoremap <silent> <Leader>b :buffers<CR>:buffer
 nnoremap <silent> <Leader>j :bn<CR>
 nnoremap <silent> <Leader>k :bp<CR>
-nnoremap <silent> <Leader>b :buffers<CR>:buffer 
-nnoremap <silent> <Leader>b :buffers<CR>:buffer<Space>
 
 
