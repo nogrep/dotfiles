@@ -12,15 +12,13 @@ Esc::Esc
 ;*Escape::Send('{Escape}')
 ^::+- ;=
 
-Tab & q::+ ;+
-Tab & r::* ;*
-Tab & t::^ ;^
+Tab & q::~ ;~
+Tab & w::^ ;^
 Tab & y::+6 ;&
 Tab & u::+8 ;(
 Tab & i::+9 ;)
 Tab & o::+[ ;{
 Tab & p::+] ;}
-@::+- ;=
 Tab & @::+4 ;$
 
 Tab & f::~ ;~
