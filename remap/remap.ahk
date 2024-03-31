@@ -10,10 +10,11 @@ Esc & p::PgDn
 
 Esc::Esc
 ;*Escape::Send('{Escape}')
-^::+- ;=
 
 Tab & q::~ ;~
 Tab & w::^ ;^
+Tab & e::+; ;+
+Tab & r::- ;-
 Tab & y::+6 ;&
 Tab & u::+8 ;(
 Tab & i::+9 ;)
@@ -21,7 +22,7 @@ Tab & o::+[ ;{
 Tab & p::+] ;}
 Tab & @::+4 ;$
 
-Tab & f::~ ;~
+Tab & f::+- ;=
 Tab & h::+3 ;#
 Tab & j::+7 ;'
 Tab & k::+2 ;"
