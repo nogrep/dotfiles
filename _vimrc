@@ -39,7 +39,8 @@ function MyDiff()
   endif
 endfunction
 
-
+set encoding=utf-8
+set fileencodings=utf-8,cp932
 set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
@@ -54,6 +55,18 @@ filetype on
 set hlsearch
 colorscheme slate
 set belloff=all
+set cursorline
+set laststatus=2
+set list
+"set listchars=tab:»-,trail:·,space:·,nbsp:␣,eol:¬,extends:>,precedes:<
+set listchars=tab:»-,trail:·,nbsp:␣,eol:¬,extends:>,precedes:<
+"highlight SpecialKey  ctermfg=59
+highlight NonText ctermfg=59
+
+set tabstop=2 shiftwidth=2 expandtab
+set autoindent
+set smartindent
+
 " cursor shape
 if &term =~? 'rxvt' || &term =~? 'xterm' || &term =~? 'st-'
     " 1 or 0 -> blinking block
@@ -66,7 +79,7 @@ if &term =~? 'rxvt' || &term =~? 'xterm' || &term =~? 'st-'
     " Insert Mode
     let &t_SI .= "\<Esc>[6 q"
     " Normal Mode
-    let &t_EI .= "\<Esc>[2 q"
+    let &t_EI .= "\<Esc>[0 q"
 endif
 
 " Maximize gVim window size
@@ -90,21 +103,20 @@ call plug#begin()
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Donaldttt/fuzzyy'
 call plug#end()
 
 let g:enable_fuzzyy_keymaps = 0
 let g:files_respect_gitignore = 0
-
+let mapleader = " "
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <Leader><Leader> <Plug>(easymotion-bd-w)
+nnoremap <silent> <Leader>g <Plug>(easymotion-bd-w)
 nnoremap <silent> <Leader>sf :FuzzyFiles<CR>
 nnoremap <silent> <Leader>sb :FuzzyBuffers<CR>
 nnoremap <silent> <Leader>sg :FuzzyGrep<CR>
 nnoremap <silent> <Leader>b :buffers<CR>:buffer
 nnoremap <silent> <Leader>j :bn<CR>
 nnoremap <silent> <Leader>k :bp<CR>
-
 
