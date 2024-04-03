@@ -14,6 +14,10 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 
+# Open file by searching through fzf (Windows only)
+alias open='start $(fzf)' 
+
+
 # Bash shell settings
 # Typing a directory name just by itself will automatically change into that directory.
 shopt -s autocd
