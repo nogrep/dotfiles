@@ -1,4 +1,9 @@
+Tab::Tab
 ;*Tab::Send('{Tab}')
+Esc::Esc
+;*Escape::Send('{Escape}')
+
+; Movement
 Esc & h::Left
 Esc & j::Down
 Esc & k::Up
@@ -8,9 +13,7 @@ Esc & o::End
 Esc & u::PgUp
 Esc & p::PgDn
 
-Esc::Esc
-;*Escape::Send('{Escape}')
-
+; Symbol layer
 Tab & q::~ ;~
 Tab & w::^ ;^
 Tab & e::+; ;+
@@ -36,7 +39,7 @@ Tab & ,::] ;]
 Tab & .::` ;`
 Tab & /::@ ;@
 SC073::+SC073 ;international \ to _
-Tab::Tab
+
 
 ;Right Ctrl to numpad
 >^n::0
