@@ -53,9 +53,9 @@ set relativenumber
 syntax on
 filetype on
 set hlsearch
-colorscheme slate
 set belloff=all
 set cursorline
+highlight CursorLine cterm=NONE ctermbg=240
 set laststatus=2
 set list
 "set listchars=tab:»-,trail:·,space:·,nbsp:␣,eol:¬,extends:>,precedes:<
@@ -104,12 +104,16 @@ call plug#begin()
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'easymotion/vim-easymotion'
+Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Donaldttt/fuzzyy'
 call plug#end()
 
 let g:enable_fuzzyy_keymaps = 0
-let g:files_respect_gitignore = 0
+let g:files_respect_gitignore = 1
+
+colorscheme onedark "slate
+
 let mapleader = " "
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>g <Plug>(easymotion-bd-w)
@@ -119,4 +123,6 @@ nnoremap <silent> <Leader>sg :FuzzyGrep<CR>
 nnoremap <silent> <Leader>b :buffers<CR>:buffer
 nnoremap <silent> <Leader>j :bn<CR>
 nnoremap <silent> <Leader>k :bp<CR>
+" Exit terminal mode
+tnoremap <Esc><Esc> <C-\><C-n>:q!<CR>
 
