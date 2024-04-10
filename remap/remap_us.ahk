@@ -60,6 +60,8 @@ SC11D::Enter
 ;All symbols within homerow
 Tab & q::+SC029 ;~
 Tab & w::^ ;^
+Tab & e::+ ;+
+Tab & r::- ;-
 Tab & y::+7 ;&
 Tab & u::+9 ;(
 Tab & i::+0 ;)
