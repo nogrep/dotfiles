@@ -1,0 +1,6 @@
+copy myRemap.json into ~/.config/karabiner/assets/complex_modifications/
+basic modifications on mac JIS keyboard:
+  caps -> esc
+  eisu -> right_control
+  kana -> enter/return
+  right_command -> backspace
