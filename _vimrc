@@ -45,6 +45,9 @@ set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
+set backupdir=~/.vim/backup/
+set undodir=~/.vim/undodir
+set undofile
 
 set guifont=JetBrainsMono\ NFM:h16
 set clipboard+=unnamed
