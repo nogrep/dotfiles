@@ -7,6 +7,10 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 alias grsoft='git reset --soft HEAD^'
 alias grhard='git reset --hard HEAD^'
 
+# Quick command
+alias open='start $(fzf)' 
+alias mvndebug='mvn clean install -Pdebug'
+
 # Bash aliases
 alias .='cd .'
 alias ..='cd ..'
