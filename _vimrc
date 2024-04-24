@@ -49,6 +49,7 @@ set backupdir=~/.vim/backup/
 set undodir=~/.vim/undodir
 set undofile
 
+
 set guifont=JetBrainsMono\ NFM:h16
 set clipboard+=unnamed
 set number
@@ -109,23 +110,58 @@ call plug#begin()
 Plug 'easymotion/vim-easymotion'
 Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Donaldttt/fuzzyy'
+Plug 'tpope/vim-commentary'
+" Plug 'Donaldttt/fuzzyy'
+Plug 'girishji/scope.vim'
 call plug#end()
 
+colorscheme onedark "slate
 let g:enable_fuzzyy_keymaps = 0
 let g:files_respect_gitignore = 1
-
-colorscheme onedark "slate
+let g:fuzzyy_menu_matched_hl = 'cursearch'
 
 let mapleader = " "
 nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>g <Plug>(easymotion-bd-w)
-nnoremap <silent> <Leader>sf :FuzzyFiles<CR>
-nnoremap <silent> <Leader>sb :FuzzyBuffers<CR>
-nnoremap <silent> <Leader>sg :FuzzyGrep<CR>
-nnoremap <silent> <Leader>b :buffers<CR>:buffer
+" nnoremap <silent> <Leader>sf :FuzzyFiles<CR>
+" nnoremap <silent> <Leader>sv :vs<CR>:FuzzyFiles<CR>
+" nnoremap <silent> <Leader>sb :FuzzyInBuffer<CR>
+" nnoremap <silent> <Leader>sg :FuzzyGrep<CR>
+" nnoremap <silent> <Leader>sw :FuzzyGrep <C-R><C-W><CR>
+
+" nnoremap <silent> <Leader>b :buffers<CR>:buffer
 nnoremap <silent> <Leader>j :bn<CR>
 nnoremap <silent> <Leader>k :bp<CR>
+
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-l> <C-w>l
+
 " Exit terminal mode
 tnoremap <Esc><Esc> <C-\><C-n>:q!<CR>
 
+nnoremap <Leader>sf <scriptcmd>vim9cmd scope#fuzzy#File($'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git')<cr>
+nnoremap <Leader>sg <scriptcmd>vim9cmd scope#fuzzy#Grep($'rg --vimgrep --smart-case')<cr>
+nnoremap <Leader>sw <scriptcmd>vim9cmd scope#fuzzy#Grep(null_string, true, '<cword>')<cr>
+nnoremap <Leader>sb <scriptcmd>vim9cmd scope#fuzzy#BufSearch()<cr>
+nnoremap <Leader>sl <scriptcmd>vim9cmd scope#fuzzy#Loclist()<cr>
+nnoremap <Leader>sq <scriptcmd>vim9cmd scope#fuzzy#Quickfix()<cr>
+nnoremap <Leader>so <scriptcmd>vim9cmd scope#fuzzy#MRU()<cr>
+" vnoremap <Leader>sw <scriptcmd>vim9cmd scope#fuzzy#Grep(null_string, true, ':'<,'>')<cr>
+nnoremap <Leader>b <scriptcmd>vim9cmd scope#fuzzy#Buffer()<cr>
+
+" Open file with file path list
+function! OpenFileOrFolder()
+    let l:path = iconv(getline('.'), &encoding, "utf-8")
+    if !empty(l:path)
+        let com = 'start ' . l:path 
+        echom 'Opening: ' . l:path
+        const term_buf = term_start(&shell, {'hidden':1})
+        call term_wait(term_buf, 1000)
+        call term_sendkeys(term_buf, com ."\<CR>")
+        call term_wait(term_buf, 1000)
+        call term_sendkeys(term_buf, "\<C-\>\<C-n>:q!\<CR>") 
+    endif
+endfunction
+nnoremap <Leader>fo :call OpenFileOrFolder()<CR>
